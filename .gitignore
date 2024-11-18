@@ -3,5 +3,5 @@ env
 .env
 .venv
 *.pyc
-__pycache__
-
+__pycache__/
+tasks.txt
