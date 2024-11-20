@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template
 
-history = Blueprint('history', __name__, url_prefix='/history')
+route = Blueprint('history', __name__, url_prefix='/history')
 
-@history.route('/')
+@route.route('/')
 def index():
     return render_template('pages/history.html')

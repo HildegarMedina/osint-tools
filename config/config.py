@@ -1,3 +1,4 @@
+SECRET_KEY = "super secret key"
 AVAILABLE_TOOLS = [
     {
         "name": "IP Geolocation",
