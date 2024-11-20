@@ -16,6 +16,8 @@ class IpGeolocation:
 
     def draw_map(self, latitude, longitude, location):
         """Draw map."""
+        filename = 'map.html'
         map = folium.Map(location=[latitude, longitude], zoom_start=10)
         folium.Marker([latitude, longitude], popup=location).add_to(map)
-        return map
+        map.save('static/' + filename)
+        return filename
