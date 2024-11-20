@@ -4,7 +4,7 @@
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
             {% for tool in tools %}
             <a
-                href="#"
+                href="{{ url_for(tool.route) }}"
                 class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 text-center"
             >
                 <img src="{{ url_for('static', filename=tool.icon) }}" alt="{{ tool.name }}" class="w-12 mx-auto mb-2">

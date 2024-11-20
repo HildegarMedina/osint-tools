@@ -1,0 +1,17 @@
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% for category, message in messages %}
+        {% if category == 'error' %}
+            {% set color = 'red' %}
+        {% elif category == 'success' %}
+            {% set color = 'green' %}
+        {% endif %}
+        <div class="mb-4">
+            <div class="p-4 mb-4 text-sm text-{{color}}-700 bg-{{color}}-100 rounded-lg flex justify-between" role="alert">
+                {{ message }}
+                <button type="button" class="ml-2 text-sm text-{{color}}-700 hover:text-{{color}}-900" onclick="this.parentElement.style.display='none';">
+                    <span class="material-symbols-outlined text-base">close</span>
+                </button>
+            </div>
+        </div>
+    {% endfor %}
+{% endwith %}
