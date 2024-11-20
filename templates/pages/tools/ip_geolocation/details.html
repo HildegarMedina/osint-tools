@@ -1,0 +1,74 @@
+{% extends "layout.html" %} {% block title %}IP Geolocation{% endblock %} {% block content %}
+<main class="my-5">
+    <div class="mx-auto max-w-7xl">
+        {% set parent = 'IP Geolocation' %} {% set parent_route = 'tools.ip_geolocation' %} {% set
+        current_page = 'Results' %} {% include "components/common/breadcrumb.html" %}
+    </div>
+    <div class="mx-auto max-w-7xl" x-data="ipGeolocation">
+        <h1 class="text-2xl font-medium">IP Geolocation: {{ details['ip'] }}</h1>
+
+        <div class="relative overflow-x-auto mt-4">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+                <tbody>
+                    <tr class="bg-white border-b">
+                        <th
+                            scope="row"
+                            class="px-6 py-4 text-gray-900 whitespace-nowrap font-normal"
+                        >
+                            <b>Hostname:</b> {{ details['hostname'] }}
+                        </th>
+                    </tr>
+                    <tr class="bg-white border-b">
+                        <th
+                            scope="row"
+                            class="px-6 py-4 text-gray-900 whitespace-nowrap font-normal"
+                        >
+                            <b>Org:</b> {{ details['org'] }}
+                        </th>
+                    </tr>
+                    <tr class="bg-white border-b">
+                        <th
+                            scope="row"
+                            class="px-6 py-4 text-gray-900 whitespace-nowrap font-normal"
+                        >
+                            <b>Country:</b> {{ details['country_name'] }} ({{ details['country'] }})
+                        </th>
+                    </tr>
+                    <tr class="bg-white border-b">
+                        <th
+                            scope="row"
+                            class="px-6 py-4 text-gray-900 whitespace-nowrap font-normal"
+                        >
+                            <b>Region:</b> {{ details['region'] }}
+                        </th>
+                    </tr>
+                    <tr class="bg-white border-b">
+                        <th
+                            scope="row"
+                            class="px-6 py-4 text-gray-900 whitespace-nowrap font-normal"
+                        >
+                            <b>City:</b> {{ details['city'] }}
+                        </th>
+                    </tr>
+                    <tr class="bg-white border-b">
+                        <th
+                            scope="row"
+                            class="px-6 py-4 text-gray-900 whitespace-nowrap font-normal"
+                        >
+                            <b>Latitude:</b> {{ details['latitude'] }}
+                        </th>
+                    </tr>
+                    <tr class="bg-white border-b">
+                        <th
+                            scope="row"
+                            class="px-6 py-4 text-gray-900 whitespace-nowrap font-normal"
+                        >
+                            <b>Longitude:</b> {{ details['longitude'] }}
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+{% endblock %}
