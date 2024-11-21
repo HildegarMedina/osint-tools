@@ -3,21 +3,21 @@ AVAILABLE_TOOLS = [
     {
         "name": "IP Geolocation",
         "icon": "icons/location-marker.png",
-        "route": "tools.ip_geolocation"
+        "route": "ip_geolocation.index"
     },
     {
-        "name": "Number Geolocation",
+        "name": "Phone Geolocation",
         "icon": "icons/smartphone.png",
-        "route": "tools.number_geolocation"
+        "route": "phone_geolocation.index"
     },
     {
         "name": "Domain Gathering",
         "icon": "icons/domain-name.png",
-        "route": "tools.domain_gathering"
+        "route": "domain_gathering.index"
     },
     {
         "name": "Google Dorks",
         "icon": "icons/google.png",
-        "route": "tools.google_dorks"
+        "route": "google_dorks.index"
     }
 ]

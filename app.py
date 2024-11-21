@@ -1,15 +1,23 @@
 from flask import Flask
-from routes.dashboard import route as dashboard_route
-from routes.history import route as history_route
-from routes.settings import route as settings_route
-from routes.tools import route as tools_route
+from routes import (
+    dashboard,
+    history,
+    settings,
+    ip_geolocation,
+    phone_geolocation,
+    domain_gathering,
+    google_dorks
+)
 from config.config import SECRET_KEY
 
 app = Flask(__name__)
 app.secret_key = SECRET_KEY
 app.config['SESSION_TYPE'] = 'filesystem'
 
-app.register_blueprint(dashboard_route)
-app.register_blueprint(history_route)
-app.register_blueprint(settings_route)
-app.register_blueprint(tools_route)
+app.register_blueprint(dashboard.route)
+app.register_blueprint(history.route)
+app.register_blueprint(settings.route)
+app.register_blueprint(ip_geolocation.route)
+app.register_blueprint(phone_geolocation.route)
+app.register_blueprint(domain_gathering.route)
+app.register_blueprint(google_dorks.route)
