@@ -3,16 +3,16 @@ from database import db
 from services.history import History
 from services.phone_geolocation import PhoneGeolocation
 
-route = Blueprint('phone_geolocation', __name__)
+router = Blueprint('phone_geolocation', __name__)
 
 history_svc = History(db)
 phone_geolocation = PhoneGeolocation()
 
-@route.route('/phone-geolocation')
+@router.route('/phone-geolocation')
 def index():
     return render_template('pages/phone_geolocation/index.html')
 
-@route.route('/phone-geolocation', methods=['POST'])
+@router.route('/phone-geolocation', methods=['POST'])
 def lookup_phone_geolocation():
     phone_number = request.form['phone_number']
     details = phone_geolocation.get_details(phone_number)

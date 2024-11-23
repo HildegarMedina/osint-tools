@@ -3,16 +3,16 @@ from services.ip_geolocation import IpGeolocation
 from services.history import History
 from database import db
 
-route = Blueprint('ip_geolocation', __name__)
+router = Blueprint('ip_geolocation', __name__)
 
 history_svc = History(db)
 ip_geolocation_svc = IpGeolocation()
 
-@route.route('/ip-geolocation', methods=['GET'])
+@router.route('/ip-geolocation', methods=['GET'])
 def index():
     return render_template('pages/ip_geolocation/index.html')
 
-@route.route('/ip-geolocation', methods=['POST'])
+@router.route('/ip-geolocation', methods=['POST'])
 def lookup_ip_geolocation():
     ip_address = request.form['ip_address']
     details = ip_geolocation_svc.get_details(ip_address)

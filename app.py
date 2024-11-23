@@ -1,5 +1,5 @@
 from flask import Flask
-from routes import (
+from routers import (
     dashboard,
     history,
     settings,
@@ -24,13 +24,13 @@ def tool_filter(tool):
 
 app.jinja_env.filters['tool'] = tool_filter
 
-app.register_blueprint(dashboard.route)
-app.register_blueprint(history.route)
-app.register_blueprint(settings.route)
-app.register_blueprint(ip_geolocation.route)
-app.register_blueprint(phone_geolocation.route)
-app.register_blueprint(domain_gathering.route)
-app.register_blueprint(google_dorks.route)
+app.register_blueprint(dashboard.router)
+app.register_blueprint(history.router)
+app.register_blueprint(settings.router)
+app.register_blueprint(ip_geolocation.router)
+app.register_blueprint(phone_geolocation.router)
+app.register_blueprint(domain_gathering.router)
+app.register_blueprint(google_dorks.router)
 
 db.init_app(app)
 

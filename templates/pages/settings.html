@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block title %}Settings{% endblock %}
 {% block content %}
-<main class="my-5">
+<main class="my-5 px-4">
     <div class="mx-auto max-w-7xl">
         <form method="POST" action="/settings" class="block p-6 bg-white border border-gray-200 rounded-lg shadow">
 
@@ -13,8 +13,8 @@
                 <input type="text" id="ipinfo_token" name="ipinfo_token" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" value="{% if settings.get('ipinfo_token') %}{{ settings.get('ipinfo_token') }}{% endif %}">
             </div>
             <div class="mt-4">
-                <label for="openai_apikey" class="block text-sm font-medium text-gray-700">OpenAI Api Key</label>
-                <input type="text" id="openai_apikey" name="openai_apikey" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" value="{% if settings.get('openai_apikey') %}{{ settings.get('openai_apikey') }}{% endif %}">
+                <label for="openai_api_key" class="block text-sm font-medium text-gray-700">OpenAI Api Key</label>
+                <input type="text" id="openai_api_key" name="openai_api_key" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" value="{% if settings.get('openai_api_key') %}{{ settings.get('openai_api_key') }}{% endif %}">
             </div>
 
             <button class="mt-4 px-4 py-2 bg-indigo-500 text-white font-bold rounded-md hover:bg-indigo-700 transition-all">Save</button>

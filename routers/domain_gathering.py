@@ -3,16 +3,16 @@ from database import db
 from services.domain_gathering import DomainGathering
 from services.history import History
 
-route = Blueprint('domain_gathering', __name__)
+router = Blueprint('domain_gathering', __name__)
 
 history_svc = History(db)
 domain_gathering_svc = DomainGathering()
 
-@route.route('/domain-gathering', methods=['GET'])
+@router.route('/domain-gathering', methods=['GET'])
 def index():
     return render_template('pages/domain_gathering/index.html')
 
-@route.route('/domain-gathering', methods=['POST'])
+@router.route('/domain-gathering', methods=['POST'])
 def domain_gathering():
     domain = request.form.get('domain')
     details = domain_gathering_svc.get_details(domain)
