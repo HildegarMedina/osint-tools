@@ -1,11 +1,11 @@
 from flask import Blueprint, render_template, request, redirect, flash
 from services.ip_geolocation import IpGeolocation
-from services.log import Log
+from services.history import History
 from database import db
 
 route = Blueprint('ip_geolocation', __name__)
 
-log_svc = Log(db)
+history_svc = History(db)
 ip_geolocation_svc = IpGeolocation()
 
 @route.route('/ip-geolocation', methods=['GET'])
@@ -23,7 +23,7 @@ def lookup_ip_geolocation():
             "country_flag_url": details.get("country_flag_url"),
             "data": ip_geolocation_svc.map_ip_info(details)
         }
-        log_svc.save({"tool": "ip-geolocation", "input": ip_address})
+        history_svc.save({"tool": "ip-geolocation", "input": ip_address})
         return render_template('pages/ip_geolocation/details.html', details=details, map=map)
     flash('Invalid IP address', 'error')
     return redirect('/ip-geolocation')

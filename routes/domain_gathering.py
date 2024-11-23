@@ -1,11 +1,11 @@
 from flask import Blueprint, render_template, request, redirect, flash
 from database import db
 from services.domain_gathering import DomainGathering
-from services.log import Log
+from services.history import History
 
 route = Blueprint('domain_gathering', __name__)
 
-log_svc = Log(db)
+history_svc = History(db)
 domain_gathering_svc = DomainGathering()
 
 @route.route('/domain-gathering', methods=['GET'])
@@ -17,7 +17,7 @@ def domain_gathering():
     domain = request.form.get('domain')
     details = domain_gathering_svc.get_details(domain)
     if details['whois_info']:
-        log_svc.save({"tool": "domain-gathering", "input": domain})
+        history_svc.save({"tool": "domain-gathering", "input": domain})
         return render_template('pages/domain_gathering/details.html', details=details)
     else:
         flash('Domain not found', 'error')

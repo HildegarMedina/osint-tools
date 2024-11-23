@@ -1,18 +1,19 @@
-from domain.models import Log as LogModel
+from domain.models import History as HistoryModel
 from datetime import datetime
-class Log:
+
+class History:
 
     def __init__(self, db):
         self.db = db
 
-    def save(self, log):
+    def save(self, history):
         try:
-            log = LogModel(
-                tool=log["tool"],
-                input=log["input"],
+            history = HistoryModel(
+                tool=history["tool"],
+                input=history["input"],
                 created_at=datetime.now()
             )
-            self.db.session.add(log)
+            self.db.session.add(history)
             self.db.session.commit()
         except Exception as e:
             print(e)
