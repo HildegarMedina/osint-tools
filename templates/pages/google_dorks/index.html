@@ -8,32 +8,29 @@
         {% include "components/common/breadcrumb.html" %}
     </div>
     <div class="mx-auto max-w-xl" x-data="GoogleDorks">
-        <form method="POST" action="{{ url_for('google_dorks.index') }}" class="block p-6 bg-white border border-gray-200 rounded-lg shadow" x-on:submit="lookup($event)">
+        <form method="POST" class="block p-6 bg-white border border-gray-200 rounded-lg shadow" x-on:submit="generate($event)">
 
             {% include 'components/common/messages.html' %}
 
             <h1 class="text-2xl font-medium">Google Dorks</h1>
 
-            <p class="text-sm text-gray-700">Use Google Dorks to find information about anything on the internet.</p>
+            <p class="text-sm text-gray-700">Generate a dork based on the information you want to find.</p>
 
             <div class="mt-4">
-                <label class="inline-flex items-center cursor-pointer mb-2">
-                    <input type="checkbox" value="" class="sr-only peer" checked x-model="generate_dork">
-                    <span class="me-3 text-sm font-medium text-gray-900">Generate Dork</span>
-                    <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                <label class="inline-flex items-center cursor-pointer mb-0">
+                    <span class="me-3 text-sm font-medium text-gray-900">Description</span>
                 </label>
-                <small class="text-sm text-gray-500 block" x-show="!generate_dork">Generate a dork based on the information you want to find.</small>
                 <input 
                     type="text"
-                    x-show="generate_dork"
                     x-model="description"
                     name="dork_description"
                     class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     placeholder="E.g: I want to search information about Hildegar Medina, just social networks"
+                    required
                 >
             </div>
 
-            <div class="mt-4" x-show="!generate_dork">
+            <div class="mt-4" x-show="dork">
                 <label for="dork" class="block text-sm font-medium text-gray-700">Dork</label>
                 <input 
                     type="text"
@@ -42,13 +39,14 @@
                     class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     x-model="dork"
                     placeholder="E.g: site:facebook.com Hildegar Medina"
-                    x-bind:required="!generate_dork"
+                    disabled
                 >
             </div>
 
-
-            <button class="mt-4 px-4 py-2 bg-indigo-500 text-white font-bold rounded-md hover:bg-indigo-700 transition-all" x-bind:disabled="loading">
-                <span x-show="!loading" x-text="generate_dork ? 'Generate Dork': 'Lookup'"></span>
+            <button class="mt-4 px-4 py-2 bg-indigo-500 text-white font-bold rounded-md hover:bg-indigo-700 transition-all disabled:bg-gray-300" x-bind:disabled="loading || description == ''">
+                <span x-show="!loading">
+                    Generate Dork
+                </span>
                 <div role="status" x-show="loading">
                     <svg aria-hidden="true" class="inline w-4 h-4 text-gray-200 animate-spin fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
@@ -82,21 +80,17 @@ document.addEventListener('alpine:init', () => {
             }).then(response => response.json())
             .then(data => {
                 this.dork = data.dork;
-            }).finally(() => {
                 this.loading = false;
                 this.description = "";
                 this.generate_dork = false;
+            }).finally(() => {
+                this.loading = false;
             });
         },
-        lookup(event) {
+        generate(event) {
             this.loading = true;
-            if (this.generate_dork) {
-                event.preventDefault();
-                this.generateDork();
-            }
-            setTimeout(() => {
-                this.loading = false;
-            }, 3000);
+            event.preventDefault();
+            this.generateDork();
         }
     }));
 });
