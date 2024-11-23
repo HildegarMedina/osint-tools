@@ -1,0 +1,24 @@
+{% extends "layout.html" %} {% block title %}Domain Gathering{% endblock %} {% block content %}
+<main class="my-5">
+    <div class="mx-auto max-w-7xl">
+        {% with parent = 'Domain Gathering', parent_route = 'domain_gathering.index', current_page = 'Results'  %}
+            {% include "components/common/breadcrumb.html" %}
+        {% endwith %}
+    </div>
+    <div class="mx-auto max-w-7xl">
+        <h1 class="text-2xl font-medium mb-3 flex items-center">Domain Gathering: {{ details['whois_info']['domain'] }}</h1>
+
+        <div class="mt-3">
+            {% with title = 'Whois', data = details['whois_info'] %}
+                {% include "components/tables/simple_table.html" %}
+            {% endwith %}
+        </div>
+
+        <div class="mt-3">
+            {% with title = 'DNS', data = details['dns_info'] %}
+                {% include "components/tables/simple_table.html" %}
+            {% endwith %}
+        </div>
+    </div>
+</main>
+{% endblock %}

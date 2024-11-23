@@ -14,7 +14,7 @@ def index():
 def lookup_phone_geolocation():
     phone_number = request.form['phone_number']
     details = phone_geolocation.get_details(phone_number)
-    if details and details.get("country"):
+    if details and details["data"].get("Country"):
         return render_template('pages/phone_geolocation/details.html', details=details)
     flash('Invalid phone number', 'error')
     return redirect('/phone-geolocation')

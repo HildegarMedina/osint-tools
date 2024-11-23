@@ -3,3 +3,5 @@ python-dotenv~=1.0.1
 ipinfo==5.1.1
 folium~=0.18.0
 phonenumbers~=8.13.50
+python_whois
+dnspython

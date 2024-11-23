@@ -16,10 +16,12 @@ class PhoneGeolocation:
         state = location_parts[1] if len(location_parts) > 1 else None
 
         return {
-            "Numero": phonenumbers.format_number(number, phonenumbers.PhoneNumberFormat.INTERNATIONAL),
-            "region": state or city,
-            "operator": operator,
-            "timezone": re.search(r"'(.*?)'", str(timezone_phone)).group(1),
-            "country": country,
-            "city": city if state else None
+            "number": phonenumbers.format_number(number, phonenumbers.PhoneNumberFormat.INTERNATIONAL),
+            "data": {
+                "Region": state or city,
+                "Operator": operator,
+                "Timezone": re.search(r"'(.*?)'", str(timezone_phone)).group(1),
+                "Country": country,
+                "City": city if state else None
+            }
         }

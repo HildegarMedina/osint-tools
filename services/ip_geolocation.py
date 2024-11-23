@@ -21,3 +21,14 @@ class IpGeolocation:
         folium.Marker([latitude, longitude], popup=location).add_to(map)
         map.save('static/' + filename)
         return filename
+
+    def map_ip_info(self, details):
+        return {
+            'Hostname': details.get('hostname'),
+            'Organization': details.get('org'),
+            'Country': f"{details.get('country_name')} ({details.get('country')})",
+            'Region': details.get('region'),
+            'City': details.get('city'),
+            'Latitude': details.get('latitude'),
+            'Longitude': details.get('longitude')
+        }

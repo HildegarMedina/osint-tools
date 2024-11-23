@@ -1,29 +1,28 @@
 {% extends "layout.html" %}
-{% block title %}Phone Geolocation{% endblock %}
+{% block title %}Domain Gathering{% endblock %}
 {% block content %}
 <main class="my-5">
 
     <div class="mx-auto max-w-7xl">
-        {% set current_page = 'Phone Geolocation' %}
+        {% set current_page = 'Domain Gathering' %}
         {% include "components/common/breadcrumb.html" %}
     </div>
     <div class="mx-auto max-w-xl" x-data>
-        <form method="POST" action="{{ url_for('phone_geolocation.index') }}" class="block p-6 bg-white border border-gray-200 rounded-lg shadow">
+        <form method="POST" action="{{ url_for('domain_gathering.index') }}" class="block p-6 bg-white border border-gray-200 rounded-lg shadow">
 
             {% include 'components/common/messages.html' %}
 
-            <h1 class="text-2xl font-medium">Phone Geolocation</h1>
+            <h1 class="text-2xl font-medium">Domain Gathering</h1>
 
-            <p class="text-sm text-gray-700">Lookup the geolocation of a phone number.</p>
+            <p class="text-sm text-gray-700">Lookup the domain information</p>
 
             <div class="mt-4">
-                <label for="phone_number" class="block text-sm font-medium text-gray-700">Phone Number</label>
+                <label for="domain" class="block text-sm font-medium text-gray-700">Domain</label>
                 <input 
                     type="text"
-                    id="phone_number"
-                    name="phone_number"
+                    id="domain"
+                    name="domain"
                     class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                    x-mask="+9999999999999"
                     required
                 >
             </div>

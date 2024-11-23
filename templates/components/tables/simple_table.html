@@ -1,0 +1,23 @@
+<div class="relative overflow-x-auto">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+        <thead class="text-xs text-white uppercase bg-indigo-500">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    {{ title }}
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key, value in data.items() %}
+                <tr class="bg-white border-b">
+                    <th
+                        scope="row"
+                        class="px-6 py-4 text-gray-900 whitespace-nowrap font-normal"
+                    >
+                        <b>{{ key }}:</b> {{ value }}
+                    </th>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
