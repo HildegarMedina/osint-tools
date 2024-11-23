@@ -15,6 +15,10 @@ def index():
 @route.route('/', methods=['POST'])
 def update_settings():
     ipinfo_token = request.form.get('ipinfo_token')
-    if settings_svc.update({'ipinfo_token': ipinfo_token}):
+    openai_apikey = request.form.get('openai_apikey')
+    if settings_svc.update({
+        'ipinfo_token': ipinfo_token,
+        'openai_apikey': openai_apikey
+    }):
         flash('Settings updated successfully!', 'success')
     return redirect(url_for('settings.index'))

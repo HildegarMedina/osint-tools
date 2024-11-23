@@ -3,7 +3,7 @@ from dotenv import set_key, get_key
 class Settings:
     
     def __init__(self) -> None:
-        self.visibles = ['ipinfo_token']
+        self.visibles = ['ipinfo_token', 'openai_apikey']
 
     def get_all(self):
         return { key: get_key('.env', key.upper()) for key in self.visibles}

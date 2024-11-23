@@ -22,7 +22,7 @@ class DomainGathering:
                 result = self.resolver.resolve(domain, record_type)
                 for record in result:
                     dns_info[record_type] = record.to_text()
-            except dns_resolver.NoAnswer:
+            except Exception:
                 continue
         return dns_info
 
