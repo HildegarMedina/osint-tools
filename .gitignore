@@ -7,3 +7,4 @@ tasks.txt
 __pycache__
 __pycache__/
 instance
+static/map.html
