@@ -1,0 +1,65 @@
+{% extends "layout.html" %}
+{% block title %}Google Dorks{% endblock %}
+{% block content %}
+<main class="my-5">
+
+    <div class="mx-auto max-w-7xl">
+        {% set current_page = 'Google Dorks' %}
+        {% include "components/common/breadcrumb.html" %}
+    </div>
+    <div class="mx-auto max-w-xl" x-data="GoogleDorks">
+        <form method="POST" action="{{ url_for('google_dorks.index') }}" class="block p-6 bg-white border border-gray-200 rounded-lg shadow">
+
+            {% include 'components/common/messages.html' %}
+
+            <h1 class="text-2xl font-medium">Google Dorks</h1>
+
+            <p class="text-sm text-gray-700">Use Google Dorks to find information about anything on the internet.</p>
+
+            <div class="mt-4">
+                <label class="inline-flex items-center cursor-pointer mb-2">
+                    <input type="checkbox" value="" class="sr-only peer" checked x-model="generate_dork">
+                    <span class="me-3 text-sm font-medium text-gray-900">Generate Dork</span>
+                    <div class="relative w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-blue-300 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                </label>
+                <small class="text-sm text-gray-500 block" x-show="!generate_dork">Generate a dork based on the information you want to find.</small>
+                <input 
+                    type="text"
+                    id="generate_dork"
+                    x-show="generate_dork"
+                    name="generate_dork"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    placeholder="Example: I want to search information about Hildegar Medina, just social networks"
+                    required
+                >
+            </div>
+
+            <div class="mt-4" x-show="!generate_dork">
+                <label for="dork" class="block text-sm font-medium text-gray-700">Dork</label>
+                <input 
+                    type="text"
+                    id="dork"
+                    name="dork"
+                    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                    x-model="dork"
+                    required
+                >
+            </div>
+
+
+            <button class="mt-4 px-4 py-2 bg-indigo-500 text-white font-bold rounded-md hover:bg-indigo-700 transition-all" x-text="generate_dork ? 'Generate Dork': 'Lookup'"></button>
+        </form>
+    </div>
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('alpine:init', () => {
+    Alpine.data('GoogleDorks', () => ({
+        generate_dork: false,
+        dork: ""
+    }));
+});
+</script>
+{% endblock %}
