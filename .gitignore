@@ -3,5 +3,7 @@ env
 .env
 .venv
 *.pyc
-__pycache__/
 tasks.txt
+__pycache__
+__pycache__/
+instance

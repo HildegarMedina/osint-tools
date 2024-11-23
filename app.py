@@ -9,10 +9,13 @@ from routes import (
     google_dorks
 )
 from config.config import SECRET_KEY
+from database import db
+from domain.models import *
 
 app = Flask(__name__)
 app.secret_key = SECRET_KEY
 app.config['SESSION_TYPE'] = 'filesystem'
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///osint-tool.db"
 
 app.register_blueprint(dashboard.route)
 app.register_blueprint(history.route)
@@ -21,3 +24,8 @@ app.register_blueprint(ip_geolocation.route)
 app.register_blueprint(phone_geolocation.route)
 app.register_blueprint(domain_gathering.route)
 app.register_blueprint(google_dorks.route)
+
+db.init_app(app)
+
+with app.app_context():
+    db.create_all()
